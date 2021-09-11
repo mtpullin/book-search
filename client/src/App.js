@@ -8,7 +8,7 @@ import SavedBooks from './pages/SavedBooks';
 import Navbar from './components/Navbar';
 
 const client = new ApolloClient({
-  requst: operation => {
+  request: operation => {
     const token = localStorage.getItem('id_token');
 
     operation.setContext({

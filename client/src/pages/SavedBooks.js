@@ -9,11 +9,11 @@ import { REMOVE_BOOK } from '../utils/mutations';
 
 
 const SavedBooks = () => {
-  const {loading, data} = useQuery(QUERY_ME)
+  const {loading, data} = useQuery(QUERY_ME);
   const [removeBook, {error}] = useMutation(REMOVE_BOOK)
 
   // use this to determine if `useEffect()` hook needs to run again
-  const userData = data?.me || [];
+  const userData = {savedBooks:[]}
  
 
   // create function that accepts the book's mongo _id value as param and deletes the book from the database
@@ -26,8 +26,8 @@ const SavedBooks = () => {
 
     try {
       const {data} = await removeBook({
-        variables:{bookId}
-      })
+        variables: { bookId }
+      });
 
       
       // upon success, remove book's id from localStorage
@@ -35,13 +35,14 @@ const SavedBooks = () => {
     } catch (err) {
       console.error(err);
     }
-  };
+  
 
   // if data isn't here yet, say so
   if (loading) {
     return <h2>LOADING...</h2>;
   }
-
+  
+  };
   return (
     <>
       <Jumbotron fluid className='text-light bg-dark'>
@@ -51,6 +52,7 @@ const SavedBooks = () => {
       </Jumbotron>
       <Container>
         <h2>
+          
           {userData.savedBooks.length
             ? `Viewing ${userData.savedBooks.length} saved ${userData.savedBooks.length === 1 ? 'book' : 'books'}:`
             : 'You have no saved books!'}
