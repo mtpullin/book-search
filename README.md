@@ -2,20 +2,13 @@
 
   ## Table Of Contents
   ### [Description](#description)
-  ### [Installation](#installation)
   ### [Usage](#usage)
   ### [License](#license)
-  ### [Credits](#credits)
   ### [Tests](#tests)
   ### [Questions](#questions)
 
   ## Description
   book search and saving site using the google book search api 
-
-  ## Installation
-   
-
-  ## Credits
    
 
   ## License
@@ -26,7 +19,9 @@
   undefined
 
   ## Usage
-   
+  as shown in the image below, it will allow you to click a save book button which will then save to your account as long as you are logged in.
+   ![image](https://user-images.githubusercontent.com/82049270/132955659-5a91beb6-95c6-4d8d-a5da-b220ee925e55.png)
+
 
   ## Questions
   
