@@ -24,7 +24,7 @@ type Book {
 input savedBook {
     title: String
     bookId: String
-    author: [String]
+    authors: [String]
     image: String
     description: String
     link: String

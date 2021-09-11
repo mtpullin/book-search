@@ -34,10 +34,9 @@ mutation saveBook($input: savedBook!){
         email
         bookCount
         savedBooks {
-            #_id
             bookId
             title
-            author
+            authors
             image
             description 
             link
@@ -53,10 +52,9 @@ mutation removeBook($bookId: ID!){
         email
         bookCount
         savedBooks {
-            #_id
             bookId
             title
-            author
+            authors
             image
             description
             link

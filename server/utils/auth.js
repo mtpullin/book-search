@@ -5,13 +5,18 @@ const secret = 'mysecretsshhhhh';
 const expiration = '2h';
 
 module.exports = {
+  signToken: function ({ username, email, _id }) {
+    const payload = { username, email, _id };
+
+    return jwt.sign({ data: payload }, secret, { expiresIn: expiration });
+  },
   // function for our authenticated routes
-  authMiddleware: function (req, res, next) {
-   console.log(req.headers) // allows token to be sent via  req.query or headers
+  authMiddleware: function ({req}) {
+    // allows token to be sent via  req.query or headers
     let token = req.headers.authorization;
 
     // ["Bearer", "<tokenvalue>"]
-    if (req.headers.authorization) {
+    if (token) {
       token = token
       .split(' ')
       .pop()
@@ -19,7 +24,7 @@ module.exports = {
     }
 
     if (!token) {
-      return res.status(401).json({message:'not logged in'});
+      return req;
     }
 
     // verify token and get user data out of it
@@ -27,15 +32,11 @@ module.exports = {
       const { data } = jwt.verify(token, secret, { maxAge: expiration });
       req.user = data;
     } catch {
-      return res.status(401).json({message:'invalid token'})
+      return req;
     }
 
     // send to next endpoint
-   next()
-  },
-  signToken: function ({ username, email, _id }) {
-    const payload = { username, email, _id };
-
-    return jwt.sign({ data: payload }, secret, { expiresIn: expiration });
-  },
+   return req;
+  }
+ 
 };
